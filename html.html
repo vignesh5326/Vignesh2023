@@ -1,127 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Website</title>
   <style>
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    nav {
+      background: #333;
+      color: #fff;
+      padding: 15px 20px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    #tsparticles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    nav h1 {
+      font-size: 22px;
     }
 
-    .welcome-container {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      animation: float 3s ease-in-out infinite;
+    .nav-links {
+      display: flex;
+      gap: 20px;
     }
 
-    .typing-text {
-      font-size: 2.8rem;
-      font-weight: bold;
-      border-right: 3px solid white;
-      width: fit-content;
-      margin: 0 auto 30px;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3s steps(30, end), blink 0.7s step-end infinite;
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+    .nav-links a:hover {
+      color: #ff9800;
     }
 
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    .enter-btn {
-      padding: 12px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 25px;
-      background: linear-gradient(to right, #ff8a00, #e52e71);
-      color: white;
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px rgba(255, 136, 0, 0.6);
     }
 
-    .enter-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 136, 0, 1);
+    /* Hero Section */
+    .hero {
+      background: url("https://picsum.photos/1600/900") no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      background: #ff9800;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: #e68a00;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background: #555;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="tsparticles"></div>
 
-  <div class="welcome-container">
-    <div class="typing-text">✨ Welcome to the Dashboard ✨</div>
-    <button class="enter-btn" onclick="window.location.href='https://www.google.com/'">Enter Site</button>
-  </div>
+  <!-- Navbar -->
+  <nav>
+    <h1>MyWebsite</h1>
+    <div class="menu-toggle">☰</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h2>Welcome to My Website</h2>
+    <p>Responsive design that works on all devices</p>
+    <button onclick="alert('You clicked Learn More!')">Learn More</button>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      We are a creative agency building responsive and modern websites to help you grow your online presence.
+    </p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="card">🌐 Web Development</div>
+      <div class="card">📱 App Development</div>
+      <div class="card">🎨 UI/UX Design</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
   <script>
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: false },
-      background: { color: "transparent" },
-      particles: {
-        number: { value: 80 },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        move: {
-          enable: true,
-          speed: 1,
-          direction: "none",
-          random: false,
-          straight: false,
-          outModes: "out"
-        }
-      },
-      interactivity: {
-        events: {
-          onHover: { enable: true, mode: "repulse" },
-          onClick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { quantity: 4 }
-        }
-      },
-      detectRetina: true
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
   </script>
+
 </body>
 </html>
